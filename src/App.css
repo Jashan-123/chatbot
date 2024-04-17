@@ -10,6 +10,11 @@
 }
 .form-box {
   width: 100%;
+  position: sticky;
+  bottom: 0.5rem;
+}
+.chatbot-form-container {
+  width: 100%;
 }
 .theme-box {
   padding: 5px;

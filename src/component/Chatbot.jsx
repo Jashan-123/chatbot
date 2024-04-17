@@ -61,7 +61,7 @@ const Chatbot = () => {
   return (
     <Box bg="white" w="full">
       <Container h="100%" className={msgText}>
-        <VStack h="100vh" w="full" paddingY="4">
+        <VStack h="100vh" paddingY="4">
           <HStack
             style={{
               width: "100%",
@@ -96,22 +96,30 @@ const Chatbot = () => {
                 <Message key={msg.id} text={msg.text} user={msg.sender} />
               ))}
           </VStack>
-          <form className="form-box" onSubmit={handleSendMessage}>
-            <HStack>
-              <Input
-                placeholder="Type a message..."
-                value={inputText}
-                style={{ color: inputTextColor }}
-                onChange={handleInputChange}
-              />
-              <Button
-                style={{ background: "#4122a7", color: "#fff" }}
-                type="submit"
-              >
-                Send
-              </Button>
-            </HStack>
-          </form>
+          <HStack className="form-box">
+            <form
+              className="chatbot-form-container"
+              onSubmit={handleSendMessage}
+            >
+              <HStack>
+                <Input
+                  placeholder="Type a message..."
+                  value={inputText}
+                  size="lg"
+                  style={{ color: inputTextColor }}
+                  onChange={handleInputChange}
+                />
+                <Button
+                  style={{ background: "#4122a7", color: "#fff" }}
+                  size="lg"
+                  css={{ margin: 0 }}
+                  type="submit"
+                >
+                  Send
+                </Button>
+              </HStack>
+            </form>
+          </HStack>
         </VStack>
       </Container>
     </Box>
