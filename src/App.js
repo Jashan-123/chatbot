@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -10,11 +10,23 @@ import { Login, Chatbot } from "./component";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  console.log(loggedIn);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = JSON.parse(localStorage.getItem("currentTheme"));
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  const handleToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("currentTheme", JSON.stringify(newTheme));
+  };
 
   const handleLogin = () => {
     setLoggedIn(true);
-    console.log(loggedIn);
   };
   return (
     <Router>
@@ -23,7 +35,13 @@ const App = () => {
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route
           path="/chatbot"
-          element={loggedIn ? <Chatbot /> : <Navigate to="/login" />}
+          element={
+            loggedIn ? (
+              <Chatbot theme={theme} handleToggle={handleToggle} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
       </Routes>
     </Router>

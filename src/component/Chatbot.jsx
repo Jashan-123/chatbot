@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Box, Button, HStack, Input, VStack, Switch } from "@chakra-ui/react";
 import Message from "./Message";
 import { messages } from "../data/message";
 import bot from "../images/bot.png";
 
-const Chatbot = () => {
+const Chatbot = ({ theme, handleToggle }) => {
   const [inputText, setInputText] = useState("");
   const [userMessages, setUserMessages] = useState([]);
   const [displayMsg, setDisplayMsg] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const msgTimer = setInterval(() => {
@@ -22,9 +22,18 @@ const Chatbot = () => {
         }
       });
     }, 1500);
-
     return () => clearInterval(msgTimer);
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [userMessages]);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -47,12 +56,9 @@ const Chatbot = () => {
   const msgText = theme === "dark" ? "app-dark-bg" : "app-light-bg";
   const inputTextColor = theme === "dark" ? "#fff" : "#000";
 
-  const handleToggle = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
   return (
     <Box w="full" className={msgText}>
-      <div h="100%">
+      <div className="container">
         <VStack h="100vh" paddingY="4">
           <HStack
             style={{
@@ -88,7 +94,9 @@ const Chatbot = () => {
               userMessages.map((msg) => (
                 <Message key={msg.id} text={msg.text} user={msg.sender} />
               ))}
+            <div ref={messagesEndRef} />
           </VStack>
+          <div />
           <HStack className="form-box">
             <form
               className="chatbot-form-container"

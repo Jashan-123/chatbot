@@ -39,7 +39,7 @@ const Message = ({ text, user, src, theme }) => {
     >
       {user === "bot" && <Avatar size="sm" src={botImg} />}
       <Text>
-        {text.length === 0 ? <Image src={src} alt="gif" w="60px" /> : text}
+        {text.length === 0 ? <Image src={src} alt="gif" w="80px" /> : text}
       </Text>
       {user === "me" && <Avatar size="sm" src={userImg} />}
     </HStack>
