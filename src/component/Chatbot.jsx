@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  HStack,
-  Input,
-  VStack,
-  Switch,
-} from "@chakra-ui/react";
+import { Box, Button, HStack, Input, VStack, Switch } from "@chakra-ui/react";
 import Message from "./Message";
 import { messages } from "../data/message";
 import bot from "../images/bot.png";
@@ -59,8 +51,8 @@ const Chatbot = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
   return (
-    <Box bg="white" w="full">
-      <Container h="100%" className={msgText}>
+    <Box w="full" className={msgText}>
+      <div h="100%">
         <VStack h="100vh" paddingY="4">
           <HStack
             style={{
@@ -69,7 +61,7 @@ const Chatbot = () => {
               justifyContent: "space-between",
             }}
           >
-            <img src={bot} width="15%" alt="bot" />
+            <img src={bot} className="bot-image" alt="bot" />
             <div className="theme-box">
               <span>🌞</span>
               <Switch isChecked={theme === "dark"} onChange={handleToggle} />
@@ -88,6 +80,7 @@ const Chatbot = () => {
                 key={message.id}
                 text={message.text}
                 user={message.sender}
+                src={message.src}
                 theme={theme}
               />
             ))}
@@ -121,7 +114,7 @@ const Chatbot = () => {
             </form>
           </HStack>
         </VStack>
-      </Container>
+      </div>
     </Box>
   );
 };

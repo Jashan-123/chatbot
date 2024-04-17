@@ -1,15 +1,15 @@
 .app-light-bg {
   background: linear-gradient(239.26deg, #ddeeed 63.17%, #fdf1e0 94.92%);
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 .app-dark-bg {
   background: #131921;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.bot-image {
+  max-width: 93px;
+  max-height: 93px;
 }
 .form-box {
-  width: 100%;
+  width: 50%;
   position: sticky;
   bottom: 0.5rem;
 }
@@ -43,4 +43,10 @@
 }
 Button {
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .form-box {
+    width: 100%;
+  }
 }

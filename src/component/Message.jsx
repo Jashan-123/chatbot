@@ -1,7 +1,9 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, Text, Avatar, Image } from "@chakra-ui/react";
 import React from "react";
+import botImg from "../images/bot.png";
+import userImg from "../images/me.jpg";
 
-const Message = ({ text, user, theme }) => {
+const Message = ({ text, user, src, theme }) => {
   let msgBoxColor;
   let msgColor;
   if (theme === "light") {
@@ -31,11 +33,15 @@ const Message = ({ text, user, theme }) => {
         maxWidth: "60%",
         wordWrap: "break-word",
       }}
-      paddingX="4"
+      paddingX="5"
       paddingY="2"
       borderRadius="base"
     >
-      <Text>{text}</Text>
+      {user === "bot" && <Avatar size="sm" src={botImg} />}
+      <Text>
+        {text.length === 0 ? <Image src={src} alt="gif" w="60px" /> : text}
+      </Text>
+      {user === "me" && <Avatar size="sm" src={userImg} />}
     </HStack>
   );
 };
