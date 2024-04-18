@@ -46,9 +46,6 @@
   justify-content: space-between;
   align-items: center;
 }
-Button {
-  margin-top: 1.2rem;
-}
 
 @media screen and (max-width: 600px) {
   .form-box {

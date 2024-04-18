@@ -73,7 +73,11 @@ const Login = ({ onLogin }) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
-            <Button colorScheme="facebook" type="submit">
+            <Button
+              colorScheme="facebook"
+              type="submit"
+              style={{ marginTop: "1.2rem" }}
+            >
               Login
             </Button>
             {error && <p style={{ color: "red" }}>{error}</p>}

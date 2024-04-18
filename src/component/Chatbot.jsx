@@ -113,7 +113,6 @@ const Chatbot = ({ theme, handleToggle }) => {
                 <Button
                   style={{ background: "#4122a7", color: "#fff" }}
                   size="lg"
-                  css={{ margin: 0 }}
                   type="submit"
                 >
                   Send
