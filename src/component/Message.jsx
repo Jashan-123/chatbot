@@ -1,7 +1,5 @@
-import { HStack, Text, Avatar, Image } from "@chakra-ui/react";
+import { HStack, Text, Image } from "@chakra-ui/react";
 import React from "react";
-import botImg from "../images/bot.png";
-import userImg from "../images/me.jpg";
 
 const Message = ({ text, user, src, theme }) => {
   let msgBoxColor;
@@ -27,21 +25,17 @@ const Message = ({ text, user, src, theme }) => {
   return (
     <HStack
       alignSelf={user === "bot" ? "flex-start" : "flex-end"}
+      className="msg-width"
       style={{
         background: msgBoxColor,
         color: msgColor,
-        maxWidth: "60%",
-        wordWrap: "break-word",
       }}
-      paddingX="5"
-      paddingY="2"
-      borderRadius="base"
+      padding="4"
+      borderRadius="15px"
     >
-      {user === "bot" && <Avatar size="sm" src={botImg} />}
       <Text>
-        {text.length === 0 ? <Image src={src} alt="gif" w="80px" /> : text}
+        {text.length === 0 ? <Image src={src} alt="gif" w="90px" /> : text}
       </Text>
-      {user === "me" && <Avatar size="sm" src={userImg} />}
     </HStack>
   );
 };

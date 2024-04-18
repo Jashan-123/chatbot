@@ -106,13 +106,13 @@ const Chatbot = ({ theme, handleToggle }) => {
                 <Input
                   placeholder="Type a message..."
                   value={inputText}
-                  size="lg"
+                  size="md"
                   style={{ color: inputTextColor }}
                   onChange={handleInputChange}
                 />
                 <Button
                   style={{ background: "#4122a7", color: "#fff" }}
-                  size="lg"
+                  size="md"
                   type="submit"
                 >
                   Send

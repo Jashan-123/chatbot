@@ -1,3 +1,4 @@
+/*---------------------------Chatbot.jsx----------------------------------*/
 .app-light-bg {
   background: linear-gradient(239.26deg, #ddeeed 63.17%, #fdf1e0 94.92%);
 }
@@ -8,13 +9,18 @@
   padding-left: 25%;
   padding-right: 25%;
 }
+.msg-width {
+  max-width: 45%;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
 .bot-image {
   width: 60px;
   max-width: 93px;
   max-height: 93px;
 }
 .form-box {
-  width: 50%;
+  width: 100%;
   position: sticky;
   bottom: 0.5rem;
 }
@@ -27,6 +33,9 @@
   background: #fff;
   border-radius: 20px;
 }
+/*------------------------------------------------------------------*/
+
+/*--------------------Login.jsx-------------------------------------*/
 .form-container {
   background-color: #fff;
   height: 320px;
@@ -39,13 +48,8 @@
   border-radius: 10px;
   padding: 5%;
 }
-.form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
+
+/*------------------------------------------------------------------*/
 
 @media screen and (max-width: 600px) {
   .form-box {
@@ -54,5 +58,9 @@
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .msg-width {
+    max-width: 60%;
+    word-wrap: break-word;
   }
 }
