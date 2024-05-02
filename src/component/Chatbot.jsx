@@ -3,27 +3,43 @@ import { Box, Button, HStack, Input, VStack, Switch } from "@chakra-ui/react";
 import Message from "./Message";
 import { messages } from "../data/message";
 import bot from "../images/bot.png";
+import Typing from "./Typing";
 
 const Chatbot = ({ theme, handleToggle }) => {
   const [inputText, setInputText] = useState("");
   const [userMessages, setUserMessages] = useState([]);
   const [displayMsg, setDisplayMsg] = useState([]);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [showingMessageIndicator, setShowingMessageIndicator] = useState(true);
   const messagesEndRef = useRef(null);
+  const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    const msgTimer = setInterval(() => {
-      setDisplayMsg((prevDisplayMsg) => {
-        const nextIndex = prevDisplayMsg.length + 1;
-        if (nextIndex <= messages.length) {
-          return messages.slice(0, nextIndex);
-        } else {
-          clearInterval(msgTimer);
-          return prevDisplayMsg;
-        }
-      });
-    }, 1500);
-    return () => clearInterval(msgTimer);
-  }, []);
+    if (isFinished) return;
+
+    const interval = setInterval(() => {
+      setShowingMessageIndicator(false);
+      setTimeout(() => {
+        setDisplayMsg((prevMessages) => [
+          ...prevMessages,
+          messages[currentMessageIndex],
+        ]);
+        setCurrentMessageIndex((prevIndex) => {
+          const nextIndex =
+            prevIndex === messages.length - 1 ? 0 : prevIndex + 1;
+          if (nextIndex === 0) {
+            setIsFinished(true);
+            setShowingMessageIndicator(false);
+            clearInterval(interval);
+          }
+          return nextIndex;
+        });
+        setShowingMessageIndicator(true);
+      }, 2000); // Adjust timing for message indicator and message display
+    }, 3000); // Interval between messages
+
+    return () => clearInterval(interval);
+  }, [currentMessageIndex, isFinished]);
 
   useEffect(() => {
     scrollToBottom();
@@ -90,6 +106,10 @@ const Chatbot = ({ theme, handleToggle }) => {
                 theme={theme}
               />
             ))}
+            <HStack alignSelf={"flex-start"}>
+              {showingMessageIndicator && <Typing theme={theme} />}
+            </HStack>
+
             {userMessages &&
               userMessages.map((msg) => (
                 <Message key={msg.id} text={msg.text} user={msg.sender} />

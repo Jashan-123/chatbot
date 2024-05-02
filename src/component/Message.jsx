@@ -4,6 +4,7 @@ import React from "react";
 const Message = ({ text, user, src, theme }) => {
   let msgBoxColor;
   let msgColor;
+
   if (theme === "light") {
     if (user === "me") {
       msgBoxColor = "#4122a7";

@@ -51,6 +51,52 @@
 
 /*------------------------------------------------------------------*/
 
+/*------------------Typing.jsx--------------------------------------*/
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 12px;
+  border-radius: 15px;
+}
+.light {
+  color: #232f3e !important;
+  background-color: #fff !important;
+}
+.dark {
+  color: #fff !important;
+  background-color: #232f3e !important;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #343a40;
+  border-radius: 50%;
+  margin: 0 3px;
+  animation: typing 0.5s infinite alternate;
+  animation-delay: 0.1s;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/*------------------------------------------------------------------*/
+
 @media screen and (max-width: 600px) {
   .form-box {
     width: 100%;

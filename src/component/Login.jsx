@@ -54,7 +54,7 @@ const Login = ({ onLogin }) => {
       <Container h="100vh" w="100%">
         <div className="form-container">
           <Text fontSize="4xl">Login</Text>
-          <form onSubmit={handleLogin} className="form">
+          <form onSubmit={handleLogin}>
             <FormControl isRequired>
               <FormLabel>Username</FormLabel>
               <Input
@@ -76,7 +76,7 @@ const Login = ({ onLogin }) => {
             <Button
               colorScheme="facebook"
               type="submit"
-              style={{ marginTop: "1.2rem" }}
+              style={{ marginTop: "1.2rem", marginLeft: "30%" }}
             >
               Login
             </Button>
