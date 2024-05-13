@@ -39,8 +39,8 @@ const Chatbot = ({ theme, handleToggle }) => {
           return nextIndex;
         });
         setShowingMessageIndicator(true);
-      }, 2000);
-    }, 3000);
+      }, 1000);
+    }, 1300);
 
     return () => clearInterval(interval);
   }, [currentMessageIndex, isFinished]);
