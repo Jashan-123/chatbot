@@ -4,15 +4,19 @@ import Message from "./Message";
 import { messages } from "../data/message";
 import bot from "../images/bot.png";
 import Typing from "./Typing";
+import { addMessage } from "../redux/messageSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Chatbot = ({ theme, handleToggle }) => {
   const [inputText, setInputText] = useState("");
-  const [userMessages, setUserMessages] = useState([]);
   const [displayMsg, setDisplayMsg] = useState([]);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [showingMessageIndicator, setShowingMessageIndicator] = useState(true);
   const messagesEndRef = useRef(null);
   const [isFinished, setIsFinished] = useState(false);
+
+  const dispatch = useDispatch();
+  const userMessages = useSelector((state) => state.messages.messages);
 
   useEffect(() => {
     if (isFinished) return;
@@ -35,8 +39,8 @@ const Chatbot = ({ theme, handleToggle }) => {
           return nextIndex;
         });
         setShowingMessageIndicator(true);
-      }, 2000); // Adjust timing for message indicator and message display
-    }, 3000); // Interval between messages
+      }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [currentMessageIndex, isFinished]);
@@ -64,7 +68,7 @@ const Chatbot = ({ theme, handleToggle }) => {
         sender: "me",
       };
 
-      setUserMessages([...userMessages, newMessage]);
+      dispatch(addMessage(newMessage));
       setInputText("");
     }
   };
